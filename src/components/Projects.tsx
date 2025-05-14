@@ -1,9 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { FaGooglePlay, FaGithub } from 'react-icons/fa';
 import { HiArrowTopRightOnSquare } from 'react-icons/hi2';
-import { useState } from 'react';
 import Modal from './Modal';
 
 const projects = [
@@ -34,12 +33,10 @@ const projects = [
 ];
 
 const ProjectCard = ({ project, index, onClick }: { project: typeof projects[0], index: number, onClick: () => void }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer"
+  <div
+    className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer opacity-0 animate-fade-in"
     onClick={onClick}
+    style={{ animationDelay: `${index * 100}ms` }}
   >
     <div className="aspect-video relative bg-gray-100 dark:bg-gray-700">
       <div className="absolute inset-0 bg-gradient-custom opacity-50" />
@@ -103,7 +100,7 @@ const ProjectCard = ({ project, index, onClick }: { project: typeof projects[0],
         )}
       </div>
     </div>
-  </motion.div>
+  </div>
 );
 
 const Projects = () => {
@@ -112,18 +109,12 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 sm:py-32">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12 opacity-0 animate-fade-in">
           <h2 className="h2 mb-4">Featured Projects</h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Showcasing some of my best Android development work. These projects demonstrate my expertise in creating robust, user-friendly mobile applications.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (

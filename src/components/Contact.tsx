@@ -33,7 +33,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 sm:py-32 bg-gray-50 dark:bg-gray-900">
       <div className="container-custom">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 opacity-0 animate-fade-in">
           <h2 className="h2 mb-4">Let's Connect</h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Feel free to reach out to me through any of these platforms. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
@@ -47,7 +47,8 @@ const Contact = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex flex-col items-center justify-center p-6 rounded-xl text-white transition-all transform hover:-translate-y-1 hover:scale-105 ${link.color}`}
+              className={`flex flex-col items-center justify-center p-6 rounded-xl text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 ${link.color} opacity-0 animate-fade-in`}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <link.icon className="text-4xl mb-2" />
               <span className="text-sm font-medium">{link.name}</span>
@@ -55,14 +56,14 @@ const Contact = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center opacity-0 animate-fade-in" style={{ animationDelay: '400ms' }}>
           <p className="text-gray-600 dark:text-gray-300">
             Prefer email? Reach me at{' '}
             <a
-              href="jndemail@gmail.com"
+              href="mailto:jndemail@gmail.com"
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >
-            jndemail@gmail.com
+              jndemail@gmail.com
             </a>
           </p>
         </div>
