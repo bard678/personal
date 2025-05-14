@@ -38,6 +38,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy CSS to output
+        run: |
+          mkdir -p ./out/personal
+          cp ./src/app/globals.css ./out/personal/
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
