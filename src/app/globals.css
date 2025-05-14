@@ -1,26 +1,141 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: 15, 23, 42;
+    --background: 248, 250, 252;
+    --primary: 37, 99, 235;
+    --secondary: 71, 85, 105;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground: 248, 250, 252;
+      --background: 15, 23, 42;
+      --primary: 59, 130, 246;
+      --secondary: 148, 163, 184;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    color: rgb(var(--foreground));
+    background: rgb(var(--background));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100%;
+  }
+
+  ::selection {
+    background: rgb(var(--primary) / 0.2);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .h1 {
+    @apply text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
+  }
+
+  .h2 {
+    @apply text-3xl font-semibold tracking-tight sm:text-4xl;
+  }
+
+  .h3 {
+    @apply text-2xl font-semibold tracking-tight sm:text-3xl;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg 
+    bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+    dark:focus:ring-offset-gray-900 active:scale-95 disabled:opacity-70
+    disabled:hover:bg-blue-600 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg
+    bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium transition-all
+    dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-100
+    focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+    dark:focus:ring-offset-gray-900 active:scale-95 disabled:opacity-70
+    disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800 
+    disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+
+  .nav-link {
+    @apply px-3 py-2 rounded-lg text-sm font-medium transition-all
+    hover:text-blue-600 dark:hover:text-blue-400 relative
+    after:absolute after:bottom-0 after:left-0 after:right-0 
+    after:h-0.5 after:rounded-full after:bg-blue-600 
+    after:dark:bg-blue-400 after:scale-x-0 after:origin-left
+    after:transition-transform hover:after:scale-x-100
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+    dark:focus:ring-offset-gray-900;
+  }
+
+  .social-link {
+    @apply text-2xl transition-all hover:text-blue-600 dark:hover:text-blue-400
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+    dark:focus:ring-offset-gray-900 p-2 rounded-lg hover:scale-110 active:scale-95;
+  }
 }
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500;
+  }
+
+  .bg-gradient-custom {
+    @apply bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-cyan-500/20;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .container-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-padding {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-padding {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+@layer components {
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+}
+
